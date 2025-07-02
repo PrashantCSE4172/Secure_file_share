@@ -1,0 +1,156 @@
+{
+  "info": {
+    "name": "Secure File Share API",
+    "_postman_id": "secure-file-share-api-collection",
+    "description": "Postman collection for Secure File Share FastAPI backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Client Signup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"client@example.com\", \"password\": \"client123\"}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/client/signup"
+        }
+      }
+    },
+    {
+      "name": "Client Verify Email",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"client@example.com\"}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/client/verify-email"
+        }
+      }
+    },
+    {
+      "name": "Client Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"client@example.com\", \"password\": \"client123\"}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/client/login"
+        }
+      }
+    },
+    {
+      "name": "Ops Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"ops@example.com\", \"password\": \"ops123\"}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/ops/login"
+        }
+      }
+    },
+    {
+      "name": "Upload File (Ops)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/upload"
+        }
+      }
+    },
+    {
+      "name": "List Files (Client)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/files"
+        }
+      }
+    },
+    {
+      "name": "Get Download Link",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/download-link/{{file_id}}"
+        }
+      }
+    },
+    {
+      "name": "Download File",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/download/{{download_token}}"
+        }
+      }
+    }
+  ]
+}

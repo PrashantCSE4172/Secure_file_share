@@ -1,0 +1,36 @@
+1. Write Test Cases for the above:
+
+We use the `pytest` framework along with FastAPI's `TestClient` for writing integration tests. The main functionalities tested include:
+
+- Client signup and email verification
+- Client login with JWT token generation
+- Ops login and authentication
+- File upload validation (ensuring only specific extensions are accepted)
+- Proper token-based access to download links
+
+These tests simulate API calls to ensure all endpoints behave correctly in both positive and negative scenarios. A separate SQLite test database is used for isolation during testing. The tests can be executed using `pytest test_main.py`.
+
+2. How do you plan on deploying this to the production environment?
+
+Deployment Plan:
+
+- **App Server**: Use `uvicorn` with `gunicorn` for running the FastAPI application.
+- **Database**: Use PostgreSQL for production or keep SQLite for lightweight use.
+- **Hosting Options**:
+  - **Railway** or **Render** for quick and simple deployment via GitHub integration.
+  - **Docker** deployment on a VPS like EC2 or DigitalOcean.
+- **Reverse Proxy**: Nginx to serve as a reverse proxy and manage SSL certificates using Let's Encrypt.
+- **Dockerization**: Include a Dockerfile that defines the production image, exposing the app at port 8000.
+- **Environment Variables**: Use `.env` for managing secrets and configurations.
+- **Security**:
+  - Passwords are securely hashed using bcrypt (via `passlib`).
+  - JWT tokens are used for authenticated access and are verified on each request.
+  - HTTPS is enforced via Nginx and SSL certificates.
+- **Monitoring**: Optional logging and error monitoring via services like Sentry.
+
+Deployment command (example):
+```
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
+
+This setup ensures the application is secure, maintainable, and production-ready.
